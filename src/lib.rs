@@ -1,5 +1,9 @@
 mod utils;
+mod gfx;
+mod sound;
 
+use bevy::app::App;
+use bevy::DefaultPlugins;
 use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
@@ -15,5 +19,11 @@ extern {
 
 #[wasm_bindgen]
 pub fn start() {
-    alert("Hello, gamedevjam2024!");
+    App::new()
+        .add_plugins((
+            DefaultPlugins,
+            gfx::GFXPlugin,
+            sound::SoundPlugin,
+        ))
+        .run()
 }
